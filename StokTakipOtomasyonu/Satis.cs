@@ -28,5 +28,23 @@ namespace StokTakipOtomasyonu
             MüsteriListele MüsteriListele = new MüsteriListele();
             MüsteriListele.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ÜrünEkle ÜrünEkle = new ÜrünEkle();
+            ÜrünEkle.ShowDialog();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Kategori Kategori = new Kategori();
+            Kategori.ShowDialog();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Marka Marka = new Marka();
+            Marka.ShowDialog();
+        }
     }
 }

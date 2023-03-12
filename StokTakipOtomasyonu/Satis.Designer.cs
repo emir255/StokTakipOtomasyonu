@@ -59,6 +59,8 @@
             this.button9 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -239,6 +241,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button11);
+            this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
@@ -247,7 +251,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1007, 100);
+            this.panel1.Size = new System.Drawing.Size(1284, 100);
             this.panel1.TabIndex = 3;
             // 
             // button5
@@ -279,6 +283,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Ürün Ekleme";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -360,11 +365,33 @@
             this.label10.TabIndex = 9;
             this.label10.Text = "0";
             // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button10.Location = new System.Drawing.Point(1001, 29);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(124, 41);
+            this.button10.TabIndex = 5;
+            this.button10.Text = "Kategori";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button11.Location = new System.Drawing.Point(1131, 29);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(124, 41);
+            this.button11.TabIndex = 6;
+            this.button11.Text = "Marka";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // Satis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 534);
+            this.ClientSize = new System.Drawing.Size(1284, 534);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button9);
@@ -422,6 +449,8 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button10;
     }
 }
 
