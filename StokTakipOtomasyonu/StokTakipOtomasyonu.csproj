@@ -84,6 +84,12 @@
     <Compile Include="ÜrünEkle.Designer.cs">
       <DependentUpon>ÜrünEkle.cs</DependentUpon>
     </Compile>
+    <Compile Include="ÜrünListele.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ÜrünListele.Designer.cs">
+      <DependentUpon>ÜrünListele.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Kategori.resx">
       <DependentUpon>Kategori.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ÜrünEkle.resx">
       <DependentUpon>ÜrünEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ÜrünListele.resx">
+      <DependentUpon>ÜrünListele.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

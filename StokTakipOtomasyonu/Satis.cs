@@ -46,5 +46,11 @@ namespace StokTakipOtomasyonu
             Marka Marka = new Marka();
             Marka.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ÜrünListele ÜrünListele = new ÜrünListele();
+            ÜrünListele.ShowDialog();
+        }
     }
 }
