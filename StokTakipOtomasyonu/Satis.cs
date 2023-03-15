@@ -33,6 +33,7 @@ namespace StokTakipOtomasyonu
                     durum = false;
                 }
             }
+            baglanti.Close();
         }
 
         private void SepetListele()
@@ -85,6 +86,23 @@ namespace StokTakipOtomasyonu
         private void Satis_Load(object sender, EventArgs e)
         {
             SepetListele();
+            Hesapla();
+        }
+
+        private void Hesapla()
+        {
+            try
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("select sum(toplamfiyati) from sepet", baglanti);
+                label10.Text = komut.ExecuteScalar() + "TL";
+                baglanti.Close();
+            }
+            catch (Exception)
+            {
+
+                ;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -159,16 +177,16 @@ namespace StokTakipOtomasyonu
             else
             {
                 baglanti.Open();
-                SqlCommand komut2 = new SqlCommand("update sepet miktari = miktari + '"+int.Parse(textBox6.Text)+"' where barkodno = '" + textBox4.Text + "'", baglanti);
+                SqlCommand komut2 = new SqlCommand("update sepet set miktari = miktari + '"+int.Parse(textBox6.Text)+"' where barkodno = '" +textBox4.Text+ "'", baglanti);
                 komut2.ExecuteNonQuery();
-                SqlCommand komut3 = new SqlCommand("update sepet toplamfiyat = miktari * satisfiyati where barkodno = '"+textBox4.Text+"' ", baglanti);
+                SqlCommand komut3 = new SqlCommand("update sepet set toplamfiyati = miktari * satisfiyati where barkodno = '"+textBox4.Text+"' ", baglanti);
                 komut3.ExecuteNonQuery();
                 baglanti.Close();
             }
-            
             textBox6.Text = "1";
             ds.Tables["sepet"].Clear();
             SepetListele();
+            Hesapla();
             foreach (Control item in groupBox2.Controls)
             {
                 if (item is TextBox)
@@ -217,6 +235,7 @@ namespace StokTakipOtomasyonu
             MessageBox.Show("Ürün sepetten çıkarıldı.");
             ds.Tables["sepet"].Clear();
             SepetListele();
+            Hesapla();
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -228,6 +247,43 @@ namespace StokTakipOtomasyonu
             MessageBox.Show("Ürünler sepetten çıkarıldı.");
             ds.Tables["sepet"].Clear();
             SepetListele();
+            Hesapla();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SatisListele SatisListele = new SatisListele();
+            SatisListele.ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("insert into satis(tc, adsoyad, telefon, barkodno, urunadi, miktari, satisfiyati, toplamfiyati, tarih) values(@tc, @adsoyad, @telefon, @barkodno, @urunadi, @miktari, @satisfiyati, @toplamfiyati, @tarih)", baglanti);
+                komut.Parameters.AddWithValue("tc", textBox1.Text);
+                komut.Parameters.AddWithValue("adsoyad", textBox2.Text);
+                komut.Parameters.AddWithValue("telefon", textBox3.Text);
+                komut.Parameters.AddWithValue("barkodno", dataGridView1.Rows[i].Cells["barkodno"].Value.ToString());
+                komut.Parameters.AddWithValue("urunadi", dataGridView1.Rows[i].Cells["urunadi"].Value.ToString());
+                komut.Parameters.AddWithValue("miktari", int.Parse(dataGridView1.Rows[i].Cells["miktari"].Value.ToString()));
+                komut.Parameters.AddWithValue("satisfiyati", double.Parse(dataGridView1.Rows[i].Cells["satisfiyati"].Value.ToString()));
+                komut.Parameters.AddWithValue("toplamfiyati", double.Parse(dataGridView1.Rows[i].Cells["toplamfiyati"].Value.ToString()));
+                komut.Parameters.AddWithValue("tarih", DateTime.Now.ToString());
+                komut.ExecuteNonQuery();
+                
+                SqlCommand komut2 = new SqlCommand("update urun set miktari = miktari - '" + int.Parse(dataGridView1.Rows[i].Cells["miktari"].Value.ToString()) + "'where barkodno = '" + dataGridView1.Rows[i].Cells["barkodno"].Value.ToString() + "'", baglanti);
+                komut2.ExecuteNonQuery();
+                baglanti.Close();
+            }
+            baglanti.Open();
+            SqlCommand komut3 = new SqlCommand("delete from sepet where barkodno = '" + dataGridView1.CurrentRow.Cells["barkodno"].Value.ToString() + "'", baglanti);
+            komut3.ExecuteNonQuery();
+            baglanti.Close();
+            ds.Tables["sepet"].Clear();
+            SepetListele();
+            Hesapla();
         }
     }
 }

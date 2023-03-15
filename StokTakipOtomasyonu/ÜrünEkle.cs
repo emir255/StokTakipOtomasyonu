@@ -33,6 +33,7 @@ namespace StokTakipOtomasyonu
                     durum = false;
                 }
             }
+            baglanti.Close();
         }
         private void KategoriGetir()
         {
